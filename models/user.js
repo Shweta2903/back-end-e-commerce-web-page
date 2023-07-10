@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
-const { Schema } = mongoose;
+const { createHmac } = await import(
+  "node:crypto"
+);
 
 const userSchema = new Schema({
   name: {
@@ -24,7 +25,7 @@ const userSchema = new Schema({
     trim: true,
   },
   //Password
-  password: {
+  secure_password: {
     type: String,
     require: true,
     trim: true,
@@ -41,6 +42,22 @@ const userSchema = new Schema({
     default: [],
   },
 });
+
+userSchema.method = {
+  securePassword: function (password) {
+    if (!password) {
+      return "";
+    }
+    try {
+      return crypto
+        .createHmac("sha256", this.salt)
+        .update("I love cupcakes")
+        .digest("hex");
+    } catch (error) {
+      return "";
+    }
+  },
+};
 
 module.exports = mongoose.model(
   "User",
