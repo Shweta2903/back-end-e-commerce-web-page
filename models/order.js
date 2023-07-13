@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
-const { ObjectId } = mongoose.Schema;
+const { ObjectId } = Schema;
 
 const ProductCartSchema = new Schema({
   product: {
