@@ -22,18 +22,15 @@ app.get("/login", (req, res) => {
 
 //DB connection
 mongoose
-  .connect(process.env.DATA_BASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.DATA_BASE, {})
   .then(() => {
     console.log("DB CONNECTED");
   });
 
-//middlewares
+//middleware
 app.use(
   bodyParser.json({
-    type: "application/json",
+    type: "application/*+json",
   })
 );
 app.use(cookieParser());

@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const { createHmac } = import("node:crypto");
-import { v4 as uuidv4 } from "uuid";
+const { v4: uuidv4 } = require("uuid");
 
 const userSchema = new Schema(
   {
@@ -29,7 +29,7 @@ const userSchema = new Schema(
     //Password
     secure_password: {
       type: String,
-      required: true,
+      // required: true,
       trim: true,
     },
     salt: String,
