@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const { createHmac } = import("node:crypto");
+const { createHmac } = require("node:crypto");
 const { v4: uuidv4 } = require("uuid");
 
 const userSchema = new Schema(
@@ -29,11 +29,11 @@ const userSchema = new Schema(
     //Password
     secure_password: {
       type: String,
-      // required: true,
+      required: true,
       trim: true,
     },
-    salt: String,
     //default role of all user is 0
+    salt: String,
     role: {
       type: Number,
       default: 0,
@@ -60,7 +60,7 @@ userSchema
   });
 
 userSchema.methods = {
-  authenticate: function (password) {
+  function(password) {
     return (
       this.securePassword(password) ===
       this.secure_password
@@ -76,7 +76,7 @@ userSchema.methods = {
         .update(password)
         .digest("hex");
     } catch (error) {
-      return "";
+      return "error in hex password";
     }
   },
 };

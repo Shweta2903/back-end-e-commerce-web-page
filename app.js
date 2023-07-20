@@ -30,7 +30,7 @@ mongoose
 //middleware
 app.use(
   bodyParser.json({
-    type: "application/*+json",
+    type: "application/json",
   })
 );
 app.use(cookieParser());
