@@ -60,7 +60,7 @@ userSchema
   });
 
 userSchema.methods = {
-  function(password) {
+  authentication: function (password) {
     return (
       this.securePassword(password) ===
       this.secure_password
