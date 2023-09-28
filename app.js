@@ -4,11 +4,11 @@ const dotenv = require("dotenv").config();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const authRoutes = require("./routes/auth");
 const router = express.Router();
-
-router;
 const app = express();
+//Routes
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 
 const port = process.env.PORT || 5555;
 
@@ -38,9 +38,9 @@ app.use(cors());
 
 //all routes
 app.use("/api", authRoutes);
+app.use("/api", userRoutes);
 
 //starting server
 app.listen(port, () => {
   console.log(`app listing on port ${port}`);
 });
-  
